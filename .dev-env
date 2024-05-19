@@ -2,5 +2,5 @@ ENABLED=1
 
 APP_URL='http://woo9.lan'
 
-ROBOT_PATH='D:\python\selenium\store-scraper'
+ROBOT_PATH='D:\python\selenium\py-scraper'
 PYTHON_BINARY='C:\Python310\python.exe'
