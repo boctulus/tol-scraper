@@ -80,7 +80,7 @@ class RobotController
                 }
             } else {
                 $output = System::execAt(Env::get('PYTHON_BINARY') . " index.py", Env::get('ROBOT_PATH'), "load $file --no-test");
-                dd($output, 'OUTPUT'); //
+                // dd($output, 'OUTPUT'); //
             }            
 
             $data = [
