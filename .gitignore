@@ -8,5 +8,6 @@ logs/
 tmp/
 storage/security/
 .env
+.dev-env
 winpush.bat
 __releases/
