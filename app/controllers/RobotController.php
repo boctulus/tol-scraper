@@ -70,9 +70,15 @@ class RobotController
                 Dado que existe un bug del lado de Python al ejecutar en segundo plano,
                 se momento.... para Linux sera en foreground !!!
             */
-            
+
             if (System::isWindows()){
                 $pid = System::runInBackground($file_path, $dir, $args); // ok
+
+                sleep(1);
+
+                if (!System::isProcessAlive($pid)){
+                    $res->error("Orden ha fallado en ejecucion", 500, "La ejecucion se ha detenido antes del primer segundo");
+                }
             } else {
                 $pid = System::execAt($file_path, $dir, $args); // ok
             }            
@@ -83,12 +89,6 @@ class RobotController
                 "filename" => $file,
                 "PID"      => $pid,
             ];
-
-            sleep(1);
-
-            if (!System::isProcessAlive($pid)){
-                $res->error("Orden ha fallado en ejecucion", 500, "La ejecucion se ha detenido antes del primer segundo");
-            }
 
             $res->sendJson($data);
 
