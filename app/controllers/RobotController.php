@@ -79,8 +79,8 @@ class RobotController
                     $res->error("Orden ha fallado en ejecucion", 500, "La ejecucion se ha detenido antes del primer segundo");
                 }
             } else {
-                dd("LINUX");
-                System::execAt(Env::get('PYTHON_BINARY') . " index.py", Env::get('ROBOT_PATH'), "load $file --no-test");
+                $output = System::execAt(Env::get('PYTHON_BINARY') . " index.py", Env::get('ROBOT_PATH'), "load $file --no-test");
+                dd($output, 'OUTPUT'); //
             }            
 
             $data = [
@@ -90,9 +90,7 @@ class RobotController
                 "PID"      => $pid,
             ];
 
-            // $res->sendJson($data);
-
-            return $data;
+            $res->sendJson($data);
 
         } catch (\Exception $e){
             $res->error($e->getMessage());
