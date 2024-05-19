@@ -173,8 +173,6 @@ function sendJson() {
             if (!response.ok) {
                 throw new Error('Error al enviar el JSON');
             }
-            // Mostrar mensaje de éxito
-            alert('JSON enviado con éxito');
             // Limpiar el contenido del textarea
             jsonInput.value = '';
 
@@ -183,8 +181,6 @@ function sendJson() {
         })
         .catch(error => {
             console.error('Error al enviar el JSON:', error);
-            // Mostrar mensaje de error
-            alert('Error al enviar el JSON');
         });
 }
 
