@@ -66,24 +66,24 @@ class RobotController
             */
 
             $args = "test_py.py";
-            $args = "index.py load last --no-test";
+            // $args = "index.py load last --no-test";
 
             $pid = null;
-            // if (System::isWindows()){
-            //     $file_path  = System::isWindows() ? Env::get('PYTHON_BINARY') : 'python3';
-            //     $dir        = Env::get('ROBOT_PATH');
+            if (System::isWindows()){
+                $file_path  = System::isWindows() ? Env::get('PYTHON_BINARY') : 'python3';
+                $dir        = Env::get('ROBOT_PATH');
                 
-            //     $pid = System::runInBackground($file_path, $dir, $args); // ok
+                $pid = System::runInBackground($file_path, $dir, $args); // ok
 
-            //     sleep(1);
+                sleep(1);
 
-            //     if (!System::isProcessAlive($pid)){
-            //         $res->error("Orden ha fallado en ejecucion", 500, "La ejecucion se ha detenido antes del primer segundo");
-            //     }
-            // } else {
+                if (!System::isProcessAlive($pid)){
+                    $res->error("Orden ha fallado en ejecucion", 500, "La ejecucion se ha detenido antes del primer segundo");
+                }
+            } else {
                 $output = System::execAt(Env::get('PYTHON_BINARY'), Env::get('ROBOT_PATH'), $args);
                 // dd($output, 'OUTPUT'); //
-            // }            
+            }            
 
             $data = [
                 "message"  => "Orden puesta para ejecucion",                
