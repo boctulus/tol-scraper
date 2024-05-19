@@ -313,6 +313,8 @@ class System
 
         $current_dir = getcwd();
 
+        dd("$command $extra");
+
 		chdir($dir);
         exec("$command $extra", $ret, static::$res_code);
         chdir($current_dir);
