@@ -69,7 +69,7 @@ class RobotController
             $args = "index.py load last --no-test";
 
             $pid = null;
-            // if (System::isWindows()){
+            if (System::isWindows()){
                 $file_path  = System::isWindows() ? Env::get('PYTHON_BINARY') : 'python3';
                 $dir        = Env::get('ROBOT_PATH');
                 
@@ -80,9 +80,9 @@ class RobotController
                 if (!System::isProcessAlive($pid)){
                     $res->error("Orden ha fallado en ejecucion", 500, "La ejecucion se ha detenido antes del primer segundo");
                 }
-            // } else {
-            //     $output = System::execAt(Env::get('PYTHON_BINARY'), Env::get('ROBOT_PATH'), $args);
-            // }            
+            } else {
+                $output = System::execAt(Env::get('PYTHON_BINARY'), Env::get('ROBOT_PATH'), $args);
+            }            
 
             $data = [
                 "message"  => "Orden puesta para ejecucion",                

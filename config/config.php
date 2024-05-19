@@ -15,8 +15,8 @@ return [
     
 	// "field_separator" => ";",
 
-	// "memory_limit" => "728M",
-	// "max_execution_time" => 1800,
+	"memory_limit" => "1024M",
+	"max_execution_time" => 600,
 	// "upload_max_filesize" => "50M",
 	// "post_max_size" => "50M",
 
