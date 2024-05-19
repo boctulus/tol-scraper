@@ -313,10 +313,12 @@ class System
 
         $current_dir = getcwd();
 
-        dd("$command $extra");
-
 		chdir($dir);
+        dd("Moving to '$dir'");
+
         exec("$command $extra", $ret, static::$res_code);
+        dd("$command $extra");
+        
         chdir($current_dir);
         
         return $ret;
