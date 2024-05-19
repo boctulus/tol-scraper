@@ -65,8 +65,8 @@ class RobotController
                 se momento.... para Linux sera en foreground !!!
             */
 
-            $args = "test_py.py";
-            // $args = "index.py load last --no-test";
+            // $args = "test_py.py";
+            $args = "index.py load last --no-test";
 
             $pid = null;
             if (System::isWindows()){
