@@ -56,13 +56,7 @@ class RobotController
             if (!$bytes){
                 $len = strlen($raw);
                 $res->error("Se ha producido un fallo al escribir el archivo. Se ha recibido $len bytes pero se escribieron 0 bytes. Path = '$path'", 500);
-            }
-
-            // Logger::dd($bytes, $path);   // <-- revisar log
-
-            $file_path  = System::isWindows() ? Env::get('PYTHON_BINARY') : 'python3';
-            $dir        = Env::get('ROBOT_PATH');
-            $args       = "index.py load $file";
+            }            
 
             // dd("$file_path $args", 'CMD');
 
@@ -73,6 +67,10 @@ class RobotController
 
             $pid = null;
             if (System::isWindows()){
+                $file_path  = System::isWindows() ? Env::get('PYTHON_BINARY') : 'python3';
+                $dir        = Env::get('ROBOT_PATH');
+                $args       = "index.py load $file";
+                
                 $pid = System::runInBackground($file_path, $dir, $args); // ok
 
                 sleep(1);
@@ -81,7 +79,7 @@ class RobotController
                     $res->error("Orden ha fallado en ejecucion", 500, "La ejecucion se ha detenido antes del primer segundo");
                 }
             } else {
-                System::execAt($file_path, $dir, $args); // ok
+                $res = System::execAt(Env::get('PYTHON_BINARY') . " index.py", Env::get('ROBOT_PATH'), "load $file");
             }            
 
             $data = [
