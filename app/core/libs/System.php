@@ -231,7 +231,8 @@ class System
                 }
 
                 $cmd = ($output_path !== null) ? "nohup $_cmd > $output_path 2>&1 & echo $!" : "nohup $_cmd > /dev/null 2>&1 & echo $!";
-                
+                $cmd = escapeshellcmd($cmd);    
+
                 $pid = (int) shell_exec($cmd);                
                 break;
             default:
@@ -292,7 +293,10 @@ class System
     static function exec(string $command, ...$args){
         $extra = implode(' ', array_values($args));
 
-        exec("$command $extra", $ret, static::$res_code);
+        $cmd = "$command $extra";
+        $cmd = escapeshellcmd($cmd);
+
+        exec($cmd, $ret, static::$res_code);
         
         return $ret;
     }
@@ -310,15 +314,13 @@ class System
     */
     static function execAt(string $command, string $dir, ...$args){
         $extra = implode(' ', array_values($args));
+        $cmd   = "$command $extra";
+        $cmd   = escapeshellcmd($cmd);
 
         $current_dir = getcwd();
 
 		chdir($dir);
-        // dd("Moving to '$dir'");
-
-        exec("$command $extra", $ret, static::$res_code);
-        // dd("$command $extra");
-        
+        exec($cmd, $ret, static::$res_code);        
         chdir($current_dir);
         
         return $ret;
