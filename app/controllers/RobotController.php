@@ -71,6 +71,7 @@ class RobotController
                 se momento.... para Linux sera en foreground !!!
             */
 
+            $pid = null;
             if (System::isWindows()){
                 $pid = System::runInBackground($file_path, $dir, $args); // ok
 
@@ -80,7 +81,7 @@ class RobotController
                     $res->error("Orden ha fallado en ejecucion", 500, "La ejecucion se ha detenido antes del primer segundo");
                 }
             } else {
-                $pid = System::execAt($file_path, $dir, $args); // ok
+                System::execAt($file_path, $dir, $args); // ok
             }            
 
             $data = [
