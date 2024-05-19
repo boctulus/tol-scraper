@@ -79,6 +79,7 @@ class RobotController
                     $res->error("Orden ha fallado en ejecucion", 500, "La ejecucion se ha detenido antes del primer segundo");
                 }
             } else {
+                dd("LINUX");
                 System::execAt(Env::get('PYTHON_BINARY') . " index.py", Env::get('ROBOT_PATH'), "load $file --no-test");
             }            
 
