@@ -90,7 +90,9 @@ class RobotController
                 "PID"      => $pid,
             ];
 
-            $res->sendJson($data);
+            // $res->sendJson($data);
+
+            return $data;
 
         } catch (\Exception $e){
             $res->error($e->getMessage());
