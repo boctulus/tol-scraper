@@ -1,7 +1,9 @@
 #!/bin/bash
 
 git pull
-scraper
+cd /var/www/store-scraper
 git pull
-plugin
+cd /var/www/html/wp-content/plugins/tol-scraper$
+
+
 
