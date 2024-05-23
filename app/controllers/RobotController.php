@@ -68,6 +68,10 @@ class RobotController
             // $args = "test_py.py";
             $args = "index.py load last --no-test";
 
+            /*
+                Volver a chequear que pasa en LINUXXXXXXXXXXXXXXXXX !!!!
+            */
+
             $pid = null;
             if (System::isWindows()){
                 $file_path  = System::isWindows() ? Env::get('PYTHON_BINARY') : 'python3';
